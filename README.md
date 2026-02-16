@@ -16,7 +16,7 @@ Projecte Nexus vol posar en marxa una plataforma de formació E-learning pròpia
 
 Per aquest motiu, Projecte Nexus encarrega al vostre equip tècnic (vosaltres) l’estudi, desplegament i presentació d’una solució completa de servidor, adequada a les necessitats del client i al context real d’una petita o mitjana organització.
 
-Al següent enllaç pots trobar l'enunciat complet del projecte [accés al projecte Nexus]()
+Al següent enllaç pots trobar l'enunciat complet del projecte [accés al projecte Nexus](https://docs.google.com/document/d/1dyntLKYDdo1CpgM7ZmHbXXD5VhMYAe9-/edit?usp=sharing&ouid=104728425662496836733&rtpof=true&sd=true)
 
 ## Instruccions (per eliminar abans de lliurar el projecte)
 
