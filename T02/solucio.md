@@ -61,6 +61,14 @@ sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-availab
 sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/academia.conf
 ```
 
+Editarem els arxius de config amb 
+```bash
+sudo nano /etc/apache2/sites-available/projectenexus.conf
+sudo nano /etc/apache2/sites-available/academia.conf
+```
+![](img/08.png)
+![](img/09.png)
+
 Ara cargarem els sites que em creat amb
 ```bash
 sudo a2ensite projectenexus.conf
@@ -70,4 +78,14 @@ haurem de tornar a carregar el servei per que les pagines carreguin
 ```bash
 sudo systemctl reload apache2
 ```
-![](img/09.png)
+![](img/10.png)
+
+Pagina de Projectenexus
+![](img/11.png)
+
+Pagina de Academia
+![](img/12.png)
+
+## 3. Personalització d'Errors
+
+![]()
