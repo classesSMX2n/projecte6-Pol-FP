@@ -2,8 +2,8 @@
 
 ## 1. Instal·lació i configuració base 
 
-Propietats de la maquina virtual
-![](img)
+Propietats de la maquina virtual:
+![](img/01.png)
 
 abanç de fer qualsevol cosa actualitzarem la maquina amb:
 ```bash
