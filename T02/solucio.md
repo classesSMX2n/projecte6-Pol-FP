@@ -70,3 +70,4 @@ haurem de tornar a carregar el servei per que les pagines carreguin
 ```bash
 sudo systemctl reload apache2
 ```
+![](img/09.png)
