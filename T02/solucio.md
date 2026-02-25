@@ -88,4 +88,95 @@ Pagina de Academia
 
 ## 3. Personalització d'Errors
 
-![]()
+Per poder posar una pagina d'error 404 personalitzada haurem de crear un 404.html 
+```bash
+sudo nano /var/www/projectenexus/404.html
+sudo nano /var/www/academia/404.html
+```
+![](img/13.png)
+![](img/14.png)
+
+Per que en cas de error 404 la nostra web carregui el arxiu que acabem de crear haurem de cambiar la configuracio del nostra site
+```bash
+sudo nano /etc/apache2/sites-available/projectenexus.conf
+sudo nano /etc/apache2/sites-available/academia.conf
+```
+![](img/15.png)
+![](img/16.png)
+
+Error 404 projectenexus:
+![](img/17.png)
+
+Error 404 academia:
+![](img/18.png)
+
+## 4. Seguretat i Certificats (HTTPS)
+
+Per poder habilitar diferents llocs amb pagina segura (SSL) copiarem l'arxiu per defecte TLS 
+```bash
+sudo cp /etc/apache2/sites-available/default-ssl.conf /etc/apache2/sites-available/projectenexus-ssl.conf
+sudo cp /etc/apache2/sites-available/default-ssl.conf /etc/apache2/sites-available/academia-ssl.conf
+```
+
+Ara crearem les carpetes on guardarem les claus del certificat autosignat que utilitzarem
+```bash
+sudo mkdir /var/www/projectenexus/cert && sudo mkdir /var/www/projectenexus/private
+sudo mkdir /var/www/academia/cert && sudo mkdir /var/www/academia/private
+```
+
+Per crear un Certificat autosignat per els dominis projectenexus.test i academia.test utilitzarem OpenSSL el certificat haura de tenir una duració de 365 dies i una clau RSA de 2048 bits. **NOMES ES MOSTRARA LA CREACIÓ DE LA CLAU PER PROJECTE NEXUS CAL REPETIR EL PROCESS PER ACADEMIA**
+```bash
+sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /var/www/projectenexus/private/projectenexus.key -out /var/www/projectenexus/cert/projectenexus.crt
+```
+![](img/19.png)
+
+A continuació haurem de editar el arxiu projectenexus-ssl.conf
+```bash
+sudo nano /etc/apache2/sites-available/projectenexus-ssl.conf
+```
+![](img/20.png)
+
+Per habilitar el protocol https en apache2 cal fer
+```bash
+sudo a2enmod ssl
+sudo a2ensite projectenexus-ssl.conf
+systemctl restart apache2
+```
+
+Ara configurarem el servidor perque qualsevol peticio HTTP es redirigeixi automaticament a HTTPS
+```bash
+sudo nano /etc/apache2/sites-available/projectenexus.conf
+```
+![](img/21.png)
+
+Recargarem la configuració de apache2 amb
+```bash
+sudo systemctl reload apache2
+```
+
+Com podrem veure a partir d'ara quan posem www.projectenexus.test ens anira per conexio segura mitjançant HTTPS
+![](img/22.png)
+![](img/23.png)
+
+Ara ensenyare el resultat d'Academia
+![](img/24.png)
+![](img/25.png)
+
+Ara neceistem bloquejar la carpeta private per que no es convenient que qualsevol persona pugui accedir a dins i d'aquesta manera accedir a la clau privada per fer aixo editarem l'arxiu projectenexus-ssl.conf
+```bash
+sudo nano /etc/apache2/sites-available/projectenexus-ssl.conf
+```
+![](img/26.png)
+
+Recargarem la configuració de apache2 amb
+```bash
+sudo systemctl reload apache2
+```
+
+Com podem veure no podem accedir a el directory private a projectenexus.test
+![](img/27.png)
+
+Ara mostrare com no es pot accedir a academia tampoc
+![](img/28.png)
+
+## 5. 
