@@ -1,3 +1,7 @@
+# Protecció de dades
+
+## Tasca 1
+
 Obrirem el nostre programa veracrypt i li donarem a crear volumen
 ![](img/01.png)
 
@@ -31,5 +35,23 @@ Deixarem aquesta configuració per defecte i donarem cifrar
 Veurem la pestaña de volumen xifrat i li donarem a finalitzar
 ![](img/11.png)
 
-Ens anirem al programa de Veracrypt li donarem a seleccionar dispositivo i seleccionarem el nostre pendrive/volumen creat
+Ens anirem al programa de Veracrypt li donarem a seleccionar dispositivo i seleccionarem el nostre pendrive/volumen xifrat
 ![](img/12.png)
+
+Una vegada fet aixo seleccionarem una lletra i li donarem a montar
+![](img/13.png)
+
+Posarem la contrasenya i li donarem a aceptar
+![](img/14.png)
+
+Una vegada fet aixo ara podrem accedir al nostre pendrive xifrat
+![](img/15.png)
+
+Posarem un arxiu en aquest cas es diu EXAMEN_FINAL_SEGURETAT i a dins tindrem unes preguntes
+![](img/16.png)
+
+A continuació desmontarem la unitat 
+![](img/17.png)
+
+Si no montem el pendrive amb la contrasenya no podrem accedir a les dades a dins
+![](img/18.png)
