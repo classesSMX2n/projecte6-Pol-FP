@@ -6,13 +6,11 @@ Propietats de la màquina virtual:
 ![](img/01.png)
 
 Abans de fer qualsevol cosa, actualitzarem la màquina amb:
-
 ```bash
 sudo apt update && sudo apt upgrade -y
 ```
 
 Ara instal·larem Apache2 amb:
-
 ```bash
 sudo apt install apache2
 ```
