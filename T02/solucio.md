@@ -16,7 +16,6 @@ sudo apt install apache2
 ```
 
 Per comprovar que Apache està funcionant correctament:
-
 ```bash
 systemctl status apache2
 ```
