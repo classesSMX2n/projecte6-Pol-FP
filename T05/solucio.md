@@ -8,16 +8,6 @@ En aquest informe es presenta una demostració pràctica de com protegir les dad
 
 ---
 
-## Justificació Teòrica
-
-El xifratge serveix per amagar la informació perquè ningú hi pugui accedir sense la contrasenya. Quan xifrem una unitat d’emmagatzematge (com un disc o un pendrive), els arxius que hi ha dins queden protegits i no es poden llegir ni modificar si no es munta amb la clau correcta. Això garanteix la confidencialitat de les dades, especialment si el dispositiu es perd o és robat.
-
-En canvi, la funció hash no amaga la informació. El que fa és agafar tot el contingut d’un fitxer i generar un codi únic, com una empremta digital. Aquest codi és un número molt llarg. Si es canvia qualsevol cosa del fitxer, encara que sigui només una lletra o un número, el hash canvia completament. Això permet comprovar si el fitxer ha estat modificat.
-
-Per tant, el xifratge protegeix la informació perquè no es pugui llegir, mentre que el hash serveix per assegurar que el contingut no ha estat alterat.
-
----
-
 # Tasca 1 – Protecció de dades en repòs (Xifratge amb VeraCrypt)
 
 Obrirem el programa **VeraCrypt** i farem clic a **Crear volum**.  
