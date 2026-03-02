@@ -1,9 +1,23 @@
 # Apache
 
-## 1. Instal·lació i configuració base
+## 0. Previ
 
 Propietats de la màquina virtual:  
 ![](img/01.png)
+
+Ip maquina client:
+![](img/00.png)
+
+Ip maquina server:
+![](img/00.1.png)
+
+Prova de conectivitat
+![](img/00.2.png)
+
+---
+
+## 1. Instal·lació i Configuració base
+
 
 Abans de fer qualsevol cosa, actualitzarem la màquina amb:
 ```bash
@@ -40,7 +54,7 @@ ls -l /var
 
 ---
 
-## 2. Desplegament de VirtualHosts
+## 2. DNS
 
 Per començar, editarem l’arxiu /etc/hosts per afegir els 2 dominis:
 
@@ -50,6 +64,10 @@ sudo nano /etc/hosts
 
 ![](img/05.png)
 
+---
+
+## 3. Desplegament de VirtualHosts
+
 A continuació, crearem els directoris necessaris a /var/www per allotjar els 2 llocs per separat de manera organitzada:
 
 ```bash
@@ -57,7 +75,7 @@ sudo mkdir /var/www/projectenexus
 sudo mkdir /var/www/academia
 ```
 
-També haurem de crear un arxiu index.html dins de cada carpeta:
+També haurem de crear un arxiu index.html dins de cada carpeta, aquest arxiu index.html sera la nostra pagina web(podem demanar a chatgpt el codi html per el index):
 
 ```bash
 sudo nano /var/www/projectenexus/index.html
@@ -107,7 +125,7 @@ Pàgina d’Academia:
 
 ---
 
-## 3. Personalització d'Errors
+## 4. Personalització d'Errors
 
 Per poder posar una pàgina d’error 404 personalitzada, haurem de crear un arxiu 404.html:
 
@@ -137,7 +155,7 @@ Error 404 academia:
 
 ---
 
-## 4. Seguretat i Certificats (HTTPS)
+## 5. SSL (HTTPS)
 
 Per poder habilitar diferents llocs amb pàgina segura (SSL), copiarem l’arxiu per defecte TLS:
 
@@ -180,6 +198,8 @@ sudo systemctl restart apache2
 ```
 
 Ara configurarem el servidor perquè qualsevol petició HTTP es redirigeixi automàticament a HTTPS:
+
+## 6. Redirecció HTTPS
 
 ```bash
 sudo nano /etc/apache2/sites-available/projectenexus.conf
@@ -227,7 +247,7 @@ Ara mostraré com tampoc es pot accedir a academia:
 
 ---
 
-## 5. Optimització amb HTTP/2
+## 7. Optimització amb HTTP/2
 
 Per millorar la latència i la velocitat de càrrega de la web segura, habilitarem HTTP/2:
 
