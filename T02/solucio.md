@@ -173,7 +173,7 @@ sudo mkdir /var/www/academia/cert && sudo mkdir /var/www/academia/private
 
 Per crear un certificat autosignat per als dominis projectenexus.test i academia.test utilitzarem OpenSSL. El certificat haurà de tenir una duració de 365 dies i una clau RSA de 2048 bits.
 
-**Només es mostrarà la creació de la clau per Projecte Nexus. Cal repetir el procés per Academia.**
+**Només es mostrarà la creació i aplicació de la clau per Projecte Nexus. Cal repetir el procés per Academia.**
 
 ```bash
 sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /var/www/projectenexus/private/projectenexus.key -out /var/www/projectenexus/cert/projectenexus.crt
@@ -197,9 +197,11 @@ sudo a2ensite projectenexus-ssl.conf
 sudo systemctl restart apache2
 ```
 
-Ara configurarem el servidor perquè qualsevol petició HTTP es redirigeixi automàticament a HTTPS:
+**La comanda ``A2ensite`` tambe s'ha de fer amb l'arxiu d' academia**
 
 ## 6. Redirecció HTTPS
+
+Ara configurarem el servidor perquè qualsevol petició HTTP es redirigeixi automàticament a HTTPS:
 
 ```bash
 sudo nano /etc/apache2/sites-available/projectenexus.conf
