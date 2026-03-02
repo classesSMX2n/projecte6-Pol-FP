@@ -197,7 +197,7 @@ sudo a2ensite projectenexus-ssl.conf
 sudo systemctl restart apache2
 ```
 
-**La comanda ``A2ensite`` tambe s'ha de fer amb l'arxiu d'academia una vegada editat l'arxiu**
+**Tots els passos anteriors s'han de repetir per academia, ``A2ensite`` tambe s'ha de fer amb l'arxiu d'academia una vegada editat l'arxiu**
 
 ## 6. Redirecció HTTPS
 
