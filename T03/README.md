@@ -111,8 +111,7 @@ Redactar una **memòria tècnica completa** amb:
     -   HTTPS actiu
     -   HTTP/2 funcionant
 
-⚠️ La memòria ha d'incloure **explicacions**, no només captures de
-pantalla.
+⚠️ La memòria ha d'incloure **explicacions**, no només captures de pantalla.
 
 ------------------------------------------------------------------------
 
