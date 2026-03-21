@@ -15,6 +15,10 @@ Primer farem doble click a Relax minimum password length limits i habilitem la p
 A continuació establim el minim donant click a Minimum password length i cambiant el valor
 ![](img/03.png)
 
+Com podem veure si posem una contrasenya de 7 caracters no ens deixara
+![](img/03.1.png)
+![](img/03.2.png)
+
 A group Policy managment farem click dret i li donarem a Create a GPO in this domain
 ![](img/04.png)
 
@@ -22,7 +26,7 @@ Li posem un nom i editarem la politica de contrasenya de la GPO per Gerencia
 ![](img/05.png)
 ![](img/06.png)
 
-Movem el grup i la plantilla dels usuaris de gestio a dins de la OU per que s'apliqui la GPO 
+Movem el grup i els usuauris a la plantilla dels usuaris de gestio a dins de la OU per que s'apliqui la GPO 
 ![](img/07.png)
 
 **GPO EXTRA**
