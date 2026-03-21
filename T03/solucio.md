@@ -83,3 +83,115 @@ Pagina web academia:
 
 ## 3. Pagina d'error 404
 
+Per poder personalitzar la nostra pagina d'error 404 haurem de accedir l'arxiu de configuracion
+```bash
+sudo nano /etx/nginx/sites-available/projectenexus
+sudo nano /etx/nginx/sites-available/academia
+```
+![](img/13.png)
+![](img/14.png)
+
+Per comprovar que no hi han errors sintactics a la configuració 
+```bash
+sudo nginx -t
+```
+
+Reiniciarem el servei
+```bash
+sudo systemctl restart nginx
+```
+
+Pagina error projectenexus:
+![](img/15.png)
+![](img/15.1.png)
+
+Pagina error academia:
+![](img/16.png)
+![](img/16.1.png)
+
+## 4. SSL (HTTPS)
+
+Ara pasarem de HTTP a HTTPS per començar copiarem els arxius pero li posarem .tls al final
+```bash
+cd /etc/nginx/sites-available/
+sudo cp projectenexus projectenexus.tls
+sudo cp academia academia.tls
+```
+
+Editarem els arxius, posant la configuració correcta
+```bash
+sudo nano /etc/nginx/sites-available/projectenexus.tls
+sudo nano /etc/nginx/sites-available/academia.tls
+```
+![](img/17.png)
+![](img/18.png)
+
+**ELS CERTIFICATS ES CREAN DE LA MATEIXA MANERA QUE A LA GUIA DE APACHE**
+
+si esta tot correcte ara farem un enllaç simbolic per habilitar els sites
+```bash
+sudo ln -s /etc/nginx/sites-available/projectenexus.tls /etc/nginx/sites-enabled/projectenexus.tls
+sudo ln -s /etc/nginx/sites-available/academia.tls /etc/nginx/sites-enabled/academia.tls
+```
+
+Per comprovar que no hi han errors sintactics a la configuració 
+```bash
+sudo nginx -t
+```
+![](img/19.png)
+
+Reiniciarem el servei
+```bash
+sudo systemctl restart nginx
+```
+
+Pagina projectenexus(HTTPS):
+![](img/20.png)
+
+Pagina academia(HTTPS):
+![](img/21.png)
+
+## 5. Protecció Carpetes
+
+per protegir la carpeta private posarem la seguent linea a la configuració de **cada arxiu de configuració**
+```bash
+sudo nano /etc/nginx/sites-available/projectenexus.tls
+sudo nano /etc/nginx/sites-available/academia.tls
+```
+![](img/22.png)
+
+Reiniciarem el servei
+```bash
+sudo systemctl restart nginx
+```
+
+Com podem veure si intentem entrar posara forbiden
+
+projectenexus:
+![](img/23.png)
+
+academia:
+![](img/24.png)
+
+## 6. Redirecció HTTPS
+
+Per fer la redireccio HTTPS haurem de editar el arxiu de configuració de la seguent manera
+```bash
+sudo nano /etc/nginx/sites-available/projectenexus.tls
+sudo nano /etc/nginx/sites-available/academia.tls
+```
+![](img/25.png)
+![](img/26.png)
+
+Reiniciarem el servei
+```bash
+sudo systemctl restart nginx
+```
+
+comprovarem que la conexio es fa de manera exitosa amb curl
+```bash
+curl http://www.projectenexus.test
+curl http://www.academia.test
+```
+![](img/27.png)
+![](img/28.png)
