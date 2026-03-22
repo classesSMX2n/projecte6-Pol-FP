@@ -4,6 +4,33 @@
 
 Volem endurir la política de contrasenyes de l'empresa, però abans de començar ens haurem de replantejar l'estructura actual d'**Organizational Units (OU)**.
 
+## Informe tècnic: Replantejament de l'estructura d'OU
+
+Per millorar l'organització i la gestió dels recursos dins del domini, s'ha replantejat l'estructura d'**Organizational Units (OU)** a Active Directory. L'objectiu és facilitar l'aplicació de polítiques de grup (GPO), millorar la delegació d'administració i mantenir una estructura clara i escalable.
+
+### Estructura proposada
+
+S'ha creat una **OU central** amb el nom de la ubicació de la seu principal de l'empresa, en aquest cas **MATARO**. Aquesta OU actua com a contenidor principal per a tots els recursos relacionats amb aquesta ubicació.
+
+Dins d'aquesta OU principal s'han creat les següents sub-OU:
+
+- **USUARIS** → Conté tots els comptes d'usuari de l'organització.
+- **GRUPS** → Inclou els grups de seguretat i distribució utilitzats per gestionar permisos i polítiques.
+- **COMPUTERS** → Agrupa tots els equips del domini per facilitar l'aplicació de GPO específiques per a ordinadors.
+- **GERENCIA** → OU específica per als usuaris del departament de gerència, permetent aplicar polítiques més restrictives o diferenciades.
+
+
+### Avantatges de l'estructura
+
+Aquesta estructura permet:
+
+- Aplicar **polítiques de grup específiques** segons el tipus d'objecte o departament.
+- Facilitar la **delegació d'administració** sense donar permisos globals.
+- Mantenir una **organització clara i escalable** del domini.
+- Simplificar la **gestió de seguretat i permisos** dins de l'empresa.
+
+Aquesta reorganització millora la gestió del directori actiu i permet aplicar polítiques corporatives de manera més eficient.
+
 ---
 
 ## 1. Polítiques de seguretat i contrasenyes (Seguretat corporativa)
