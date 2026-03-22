@@ -1,168 +1,248 @@
-# Windows Server 
+# Windows Server
 
-## 0. Repensament d'Ou's
+## 0. Replantejament d'OUs
 
-Volem endurir la politica de contrasenyes de la empresa pero per poder començar ens haurem de repensar l'actual Estructura d'OUs
+Volem endurir la política de contrasenyes de l'empresa, però abans de començar ens haurem de replantejar l'estructura actual d'**Organizational Units (OU)**.
 
-## 1. Polítiques de Seguretat i Contrasenyes (Seguretat Corporativa).
+---
 
-Per comencar obrirem el Group Policy Managment Editor i anirem a la password policy dels ordinadors
+## 1. Polítiques de seguretat i contrasenyes (Seguretat corporativa)
+
+Per començar obrirem **Group Policy Management Editor** i anirem a la *Password Policy* dels ordinadors.
+
 ![](img/01.png)
 
-Primer farem doble click a Relax minimum password length limits i habilitem la politica
+Primer farem doble clic a **Relax minimum password length limits** i habilitarem la política.
+
 ![](img/02.png)
 
-A continuació establim el minim donant click a Minimum password length i cambiant el valor
+A continuació establirem el mínim fent clic a **Minimum password length** i canviant el valor.
+
 ![](img/03.png)
 
-Com podem veure si posem una contrasenya de 7 caracters no ens deixara
-![](img/03.1.png)
+Com podem veure, si posem una contrasenya de **7 caràcters**, el sistema no ens deixarà continuar.
+
+![](img/03.1.png)  
 ![](img/03.2.png)
 
-A group Policy managment farem click dret i li donarem a Create a GPO in this domain
+A **Group Policy Management** farem clic dret i seleccionarem **Create a GPO in this domain**.
+
 ![](img/04.png)
 
-Li posem un nom i editarem la politica de contrasenya de la GPO per Gerencia
-![](img/05.png)
+Li posem un nom i editem la política de contrasenya de la **GPO de Gerència**.
+
+![](img/05.png)  
 ![](img/06.png)
 
-Movem el grup i els usuauris a la plantilla dels usuaris de gestio a dins de la OU per que s'apliqui la GPO 
+Movem el grup i els usuaris a la plantilla dels usuaris de gestió dins de la **OU** perquè s'apliqui la GPO.
+
 ![](img/07.png)
+
+Com podem veure, si posem **17 caràcters**, tampoc ens deixarà canviar la contrasenya. Això confirma que **la GPO de Gerència s'ha aplicat per sobre de la GPO per defecte**.
+
+![](img/07.1.png)  
+![](img/07.2.png)
 
 **GPO EXTRA**
 
 ---
 
-## 2. Instal·lacio desatesa de programes
+# 2. Instal·lació desatesa de programes
 
-Per començar crearem una nova carpeta compartida la cual haurem de fer que tothom dins del domini la pugui lleguir i els admins lleguir i escriure 
+Per començar crearem una **nova carpeta compartida**, la qual haurem de configurar perquè **tothom dins del domini la pugui llegir** i **els administradors puguin llegir i escriure**.
+
 ![](img/08.png)
 
-A dins de la carpeta ficarem el arxiu .msi de 7zip
+Dins de la carpeta hi col·locarem l'arxiu **.msi de 7zip**.
+
 ![](img/09.png)
 
-Dins la OU Usuaris crearem una GPO que es digui 7zip_gestio
+Dins la **OU Usuaris** crearem una GPO que es digui **7zip_gestio**.
+
 ![](img/10.png)
 
-Anirem fins a Software Installation
+Anirem fins a **Software Installation**.
+
 ![](img/11.png)
 
-Una vegada aqui farem click dret i crearem un nou package 
+Una vegada aquí farem clic dret i crearem un **nou package**.
+
 ![](img/12.png)
 
-Haurem d'indicar la ruta del paquet **amb la ruta de xarxa**
+Haurem d'indicar la ruta del paquet **utilitzant la ruta de xarxa**.
+
 ![](img/13.png)
 
-Ara li donarem a advanced per poder veure tota la configuració del
+Ara seleccionarem **Advanced** per poder veure tota la configuració.
+
 ![](img/14.png)
 
-Ara anirem a Deployment donarem a la opcio Assigned i li donarem a Install this application at logon li donem a ok
+A continuació anirem a **Deployment**, seleccionarem **Assigned** i activarem **Install this application at logon**.
+
 ![](img/15.png)
 
-**ELS SEGUENTS PASSOS SON PER APLICAR UNA GPO A UN GRUP ESCPECIFIC**
+## Aplicar una GPO a un grup específic
 
-Ara anirem a la GPO que em creat i anem a security filtering i eliminem la unica que hem de tenir que es diu Authenticated Users
+Ara anirem a la **GPO que hem creat** i, a **Security Filtering**, eliminarem **Authenticated Users**.
+
 ![](img/16.png)
 
-Ara anireme a Delegation i donem a add i afegim Authenticated Users i li donem nomes permisos de llegir
-![](img/17.png)
+Després anirem a **Delegation**, farem clic a **Add** i afegirem **Authenticated Users** amb permisos només de **Read**.
+
+![](img/17.png)  
 ![](img/18.png)
 
-una vegada fet aixo anem a Scope i li donem a add i posem el grup que volguem que afecti aquesta GPO
+Una vegada fet això, anirem a **Scope**, farem clic a **Add** i seleccionarem el grup al qual volem aplicar la GPO.
+
 ![](img/19.png)
 
-Ara si iniciem sessio amb un usuari de gestio el 7zip sera instalat de manera automatica
+Ara, si iniciem sessió amb un **usuari de gestió**, **7zip s'instal·larà automàticament**.
+
 ![](img/20.png)
 
-Ara haurem de crear una nova GPO a la nostra OU gerencia per que si els usuaris de gerencia es volen instalar firefox se'l puguin instalar repetirem tot el mateix proces menys a les propietats que en comptes de posar que siguin assignades posarem que siguin publicades
+Ara crearem una nova **GPO a la OU Gerència** perquè, si els usuaris de gerència volen instal·lar **Firefox**, ho puguin fer.
+
+Repetirem el mateix procés, però a les propietats seleccionarem **Published** en lloc de **Assigned**.
+
 ![](img/21.png)
 
-Farem que la GPO només s'apliqui per el grup gerencia
+Farem que la GPO només s'apliqui al **grup Gerència**.
+
 ![](img/22.png)
 
-Ara si entrem amb un usuari de gerencia podrem entrar al panell de control i al apartat de programas i caracteristicas podrem veure una opcio que posa Instalar programas desde la red, com podem veure podem instalar firefox 
-![](img/23.png)
+Ara, si entrem amb un usuari de gerència, podrem anar al **Panell de control → Programes i característiques** i veure l'opció **Instal·lar programes des de la xarxa**.
+
+![](img/23.png)  
 ![](img/24.png)
 
-## 3. .exe a .msi
+---
 
+# 3. Conversió de .exe a .msi
 
-## 4. Perfils Mobils
-Els usuaris de gestio normalment cambien entre portatil i equip d'escriptori com a solucio a aixo farem perfils mobils.
+*(Secció pendent d'afegir contingut.)*
 
-Començarem creant una nova carpeta compartida ques digui perfils i la compartirem posarem els mateixos permissos que els de la carpeta homes
+---
+
+# 4. Perfils mòbils
+
+Els usuaris de gestió normalment canvien entre **portàtil i equip d'escriptori**. Com a solució utilitzarem **perfils mòbils**.
+
+Començarem creant una **nova carpeta compartida anomenada `perfils`** i li assignarem **els mateixos permisos que la carpeta homes**.
+
 ![](img/25.png)
 
-Ara editarem les propietats de la plantilla anirem a profile i cambiarem la ruta del perfil per la carpeta que em posat important posarem al final %USERNAME%
+Ara editarem les propietats de la plantilla. Anirem a **Profile** i canviarem la ruta del perfil per la carpeta creada.
+
+És important afegir **%USERNAME% al final**.
+
 ![](img/26.png)
 
-Crearem un nou usuari amb la plantilla editada i intentarem iniciar sessio en ell com a resultat sen's creara una carpeta a dins de la carpeta perfils
-![](img/27.png)
+Crearem un nou usuari amb la plantilla editada i iniciarem sessió.
+
+Com a resultat, es crearà automàticament una carpeta dins de **perfils**.
+
+![](img/27.png)  
 ![](img/28.png)
 
-## 5. Redireccio de carpetes
+---
 
-Tornem al Default Domain Policy
+# 5. Redirecció de carpetes
+
+Tornem al **Default Domain Policy**.
+
 ![](img/29.png)
 
-Anirem a Folder Redirection
+Anirem a **Folder Redirection**.
+
 ![](img/30.png)
 
-Configurarem la redireccio cap a la nostra carpeta de homes
+Configurarem la redirecció cap a la nostra **carpeta homes**.
+
 ![](img/31.png)
 
-Com podem veure ara que em iniciat sessio ens surt que la carpeta Documentos esta En línea aixo vol dir que esta sincronitzat
+Ara, quan iniciem sessió, veurem que la carpeta **Documents** apareix com **En línia**, cosa que indica que està sincronitzada.
+
 ![](img/32.png)
 
-## 6. Delegació
+També podem veure que l'arxiu es troba dins la carpeta del servidor.
 
-Aqui el que volem fer es delegar funcions a altres usuaris ex un administrador d'usuaris que gestioni els altres usuaris 
-S
-Començarem entrant a la nostra maquina client com a administrador anirem a la configuració i cercarem caracteristicas opcionales
+![](img/32.1.png)
+
+---
+
+# 6. Delegació
+
+L'objectiu és **delegar funcions a altres usuaris**, per exemple un **administrador d'usuaris** que pugui gestionar altres comptes.
+
+Començarem entrant a la **màquina client com a administrador**.
+
+Anirem a **Configuració → Característiques opcionals**.
+
 ![](img/33.png)
 
-anirem a ver caracteristicas cercarem rsat i descarragarem les 2 que es veuen en pantalla
-![](img/34.png)
+Seleccionarem **Veure característiques**, buscarem **RSAT** i instal·larem les dues opcions que es mostren a la imatge.
+
+![](img/34.png)  
 ![](img/35.png)
 
-Esperarem fins que acabi la instalació
+Esperarem fins que finalitzi la instal·lació.
+
 ![](img/36.png)
 
-Si desde la maquina client fem login com a Adminisitrador podrem utilitzar les eines de gestio
+Des de la màquina client, si iniciem sessió com a **Administrador**, podrem utilitzar les eines de gestió.
+
 ![](img/37.png)
 
-Ara li donarem a agregar otros servidores para administrar
+Ara seleccionarem **Agregar otros servidores para administrar**.
+
 ![](img/38.png)
 
-Posarem el nom del nostre server i el afegirem
+Introduirem el **nom del nostre servidor** i l'afegirem.
+
 ![](img/39.png)
 
-Com podem veure s'ha afegit correctament el server
+Com podem veure, el servidor s'ha afegit correctament.
+
 ![](img/40.png)
 
-Ara crearem un nou usuari que es digui adminOU el crearem a dins de la OU usuaris
+Ara crearem un nou usuari anomenat **adminOU** dins de la **OU Usuaris**.
+
 ![](img/41.png)
 
-farem click dret a la OU de usuaris i li donarem a delegate control
+Farem clic dret sobre la **OU Usuaris** i seleccionarem **Delegate Control**.
+
 ![](img/42.png)
 
-Li donem a add i escriurem el nom del usuari que em creat que sera al que delegarem les funcions 
+Seleccionarem **Add** i introduirem el nom de l'usuari **adminOU**, que serà a qui delegarem les funcions.
+
 ![](img/43.png)
 
-Delegarem les funcions de reiniciar contrasenyes i modificar la pertinença de altres usuaris al grup
+Delegarem les funcions de:
+
+- Restablir contrasenyes
+- Modificar la pertinença d'usuaris als grups
+
 ![](img/44.png)
 
-Iniciem sessio com adminOU
+Iniciem sessió amb **adminOU**.
+
 ![](img/45.png)
 
-Entramos a Herramientas y seleccionamos Usuarios y equipos de Active Directory
+Anirem a **Herramientas → Usuarios y equipos de Active Directory**.
+
 ![](img/46.png)
 
-Anirem a un usuari i restablirem la contrasenya 
-![](img/47.png)
-![](img/48.png)
+Seleccionarem un usuari i **restablirem la seva contrasenya**.
+
+![](img/47.png)  
+![](img/48.png)  
 ![](img/49.png)
 
-Com podem veure tambe afegir a grups el usuari 
-![](img/51.png)
+També podrem **afegir l'usuari a grups**.
+
+![](img/51.png)  
 ![](img/52.png)
+
+Si intentem fer una altra acció que **no hem delegat**, com per exemple **eliminar un usuari**, veurem que **no tenim permisos**.
+
+![](img/53.png)
