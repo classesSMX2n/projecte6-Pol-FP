@@ -1,275 +1,306 @@
-# Windows Server
-
-## 0. Replantejament d'OUs
-
-Volem endurir la política de contrasenyes de l'empresa, però abans de començar ens haurem de replantejar l'estructura actual d'**Organizational Units (OU)**.
-
-## Informe tècnic: Replantejament de l'estructura d'OU
-
-Per millorar l'organització i la gestió dels recursos dins del domini, s'ha replantejat l'estructura d'**Organizational Units (OU)** a Active Directory. L'objectiu és facilitar l'aplicació de polítiques de grup (GPO), millorar la delegació d'administració i mantenir una estructura clara i escalable.
-
-### Estructura proposada
-
-S'ha creat una **OU central** amb el nom de la ubicació de la seu principal de l'empresa, en aquest cas **MATARO**. Aquesta OU actua com a contenidor principal per a tots els recursos relacionats amb aquesta ubicació.
-
-Dins d'aquesta OU principal s'han creat les següents sub-OU:
-
-- **USUARIS** → Conté tots els comptes d'usuari de l'organització.
-- **GRUPS** → Inclou els grups de seguretat i distribució utilitzats per gestionar permisos i polítiques.
-- **COMPUTERS** → Agrupa tots els equips del domini per facilitar l'aplicació de GPO específiques per a ordinadors.
-- **GERENCIA** → OU específica per als usuaris del departament de gerència, permetent aplicar polítiques més restrictives o diferenciades.
-
-
-### Avantatges de l'estructura
-
-Aquesta estructura permet:
-
-- Aplicar **polítiques de grup específiques** segons el tipus d'objecte o departament.
-- Facilitar la **delegació d'administració** sense donar permisos globals.
-- Mantenir una **organització clara i escalable** del domini.
-- Simplificar la **gestió de seguretat i permisos** dins de l'empresa.
-
-Aquesta reorganització millora la gestió del directori actiu i permet aplicar polítiques corporatives de manera més eficient.
+# P02 – Presentació de la proposta al client
+## Projecte Nexus – Plataforma E-learning
 
 ---
 
-## 1. Polítiques de seguretat i contrasenyes (Seguretat corporativa)
+# 1. Presentació de la consultora
 
-Per començar obrirem **Group Policy Management Editor** i anirem a la *Password Policy* dels ordinadors.
+Som un equip tècnic especialitzat en **infraestructures de sistemes i serveis web** orientats a projectes educatius i tecnològics.
 
-![](img/01.png)
+La nostra tasca en aquest projecte ha estat:
 
-Primer farem doble clic a **Relax minimum password length limits** i habilitarem la política.
+- Analitzar les necessitats de l'empresa Nexus
+- Estudiar diferents tecnologies possibles
+- Desplegar i provar solucions reals
+- Comparar alternatives tècniques
+- Proposar una infraestructura viable i sostenible
 
-![](img/02.png)
-
-A continuació establirem el mínim fent clic a **Minimum password length** i canviant el valor.
-
-![](img/03.png)
-
-Com podem veure, si posem una contrasenya de **7 caràcters**, el sistema no ens deixarà continuar.
-
-![](img/03.1.png)  
-![](img/03.2.png)
-
-A **Group Policy Management** farem clic dret i seleccionarem **Create a GPO in this domain**.
-
-![](img/04.png)
-
-Li posem un nom i editem la política de contrasenya de la **GPO de Gerència**.
-
-![](img/05.png)  
-![](img/06.png)
-
-Movem el grup i els usuaris a la plantilla dels usuaris de gestió dins de la **OU** perquè s'apliqui la GPO.
-
-![](img/07.png)
-
-Com podem veure, si posem **17 caràcters**, tampoc ens deixarà canviar la contrasenya. Això confirma que **la GPO de Gerència s'ha aplicat per sobre de la GPO per defecte**.
-
-![](img/07.1.png)  
-![](img/07.2.png)
-
-**GPO EXTRA**
+El nostre objectiu és oferir una **solució fiable, escalable i econòmica** per a la nova plataforma e-learning de Nexus.
 
 ---
 
-# 2. Instal·lació desatesa de programes
+# 2. Context i necessitats del client
 
-Per començar crearem una **nova carpeta compartida**, la qual haurem de configurar perquè **tothom dins del domini la pugui llegir** i **els administradors puguin llegir i escriure**.
+L'empresa **Nexus e-learning** vol crear una plataforma de formació online orientada a **cursos per a tècnics informàtics**.
 
-![](img/08.png)
+Per tal que el projecte sigui viable, la infraestructura ha de complir diversos requisits:
 
-Dins de la carpeta hi col·locarem l'arxiu **.msi de 7zip**.
+### Rendiment
+La plataforma ha de suportar diversos usuaris connectats simultàniament sense perdre velocitat.
 
-![](img/09.png)
+### Cost controlat
+El projecte està pensat per una petita o mitjana organització, per tant cal una solució amb **costos moderats**.
 
-Dins la **OU Usuaris** crearem una GPO que es digui **7zip_gestio**.
+### Sostenibilitat
+La infraestructura ha d'utilitzar els recursos de forma eficient per reduir el consum energètic.
 
-![](img/10.png)
-
-Anirem fins a **Software Installation**.
-
-![](img/11.png)
-
-Una vegada aquí farem clic dret i crearem un **nou package**.
-
-![](img/12.png)
-
-Haurem d'indicar la ruta del paquet **utilitzant la ruta de xarxa**.
-
-![](img/13.png)
-
-Ara seleccionarem **Advanced** per poder veure tota la configuració.
-
-![](img/14.png)
-
-A continuació anirem a **Deployment**, seleccionarem **Assigned** i activarem **Install this application at logon**.
-
-![](img/15.png)
-
-## Aplicar una GPO a un grup específic
-
-Ara anirem a la **GPO que hem creat** i, a **Security Filtering**, eliminarem **Authenticated Users**.
-
-![](img/16.png)
-
-Després anirem a **Delegation**, farem clic a **Add** i afegirem **Authenticated Users** amb permisos només de **Read**.
-
-![](img/17.png)  
-![](img/18.png)
-
-Una vegada fet això, anirem a **Scope**, farem clic a **Add** i seleccionarem el grup al qual volem aplicar la GPO.
-
-![](img/19.png)
-
-Ara, si iniciem sessió amb un **usuari de gestió**, **7zip s'instal·larà automàticament**.
-
-![](img/20.png)
-
-Ara crearem una nova **GPO a la OU Gerència** perquè, si els usuaris de gerència volen instal·lar **Firefox**, ho puguin fer.
-
-Repetirem el mateix procés, però a les propietats seleccionarem **Published** en lloc de **Assigned**.
-
-![](img/21.png)
-
-Farem que la GPO només s'apliqui al **grup Gerència**.
-
-![](img/22.png)
-
-Ara, si entrem amb un usuari de gerència, podrem anar al **Panell de control → Programes i característiques** i veure l'opció **Instal·lar programes des de la xarxa**.
-
-![](img/23.png)  
-![](img/24.png)
+### Facilitat de manteniment
+El sistema ha de ser fàcil d'administrar i mantenir per l'equip tècnic.
 
 ---
 
-# 3. Conversió de .exe a .msi
+# 3. T04 – Duel de titans: Apache vs Nginx
 
-*(Secció pendent d'afegir contingut.)*
+## Comparativa tècnica
 
----
-
-# 4. Perfils mòbils
-
-Els usuaris de gestió normalment canvien entre **portàtil i equip d'escriptori**. Com a solució utilitzarem **perfils mòbils**.
-
-Començarem creant una **nova carpeta compartida anomenada `perfils`** i li assignarem **els mateixos permisos que la carpeta homes**.
-
-![](img/25.png)
-
-Ara editarem les propietats de la plantilla. Anirem a **Profile** i canviarem la ruta del perfil per la carpeta creada.
-
-És important afegir **%USERNAME% al final**.
-
-![](img/26.png)
-
-Crearem un nou usuari amb la plantilla editada i iniciarem sessió.
-
-Com a resultat, es crearà automàticament una carpeta dins de **perfils**.
-
-![](img/27.png)  
-![](img/28.png)
+| Característica | Apache | Nginx |
+|---|---|---|
+| Instal·lació | Senzilla | Senzilla |
+| Configuració | Flexible | Més tècnica |
+| Rendiment | Bo | Molt alt |
+| Consum de recursos | Mitjà | Baix |
+| Escalabilitat | Bona | Molt bona |
 
 ---
 
-# 5. Redirecció de carpetes
+## Experiència real durant el projecte
 
-Tornem al **Default Domain Policy**.
+Durant les proves pràctiques es van observar diversos aspectes:
 
-![](img/29.png)
+### Apache
 
-Anirem a **Folder Redirection**.
+Avantatges observats:
 
-![](img/30.png)
+- Configuració molt flexible
+- Gran quantitat de documentació
 
-Configurarem la redirecció cap a la nostra **carpeta homes**.
+Dificultats trobades:
 
-![](img/31.png)
-
-Ara, quan iniciem sessió, veurem que la carpeta **Documents** apareix com **En línia**, cosa que indica que està sincronitzada.
-
-![](img/32.png)
-
-També podem veure que l'arxiu es troba dins la carpeta del servidor.
-
-![](img/32.1.png)
+- Consum de memòria més elevat
+- Configuració més complexa en alguns casos
 
 ---
 
-# 6. Delegació
+### Nginx
 
-L'objectiu és **delegar funcions a altres usuaris**, per exemple un **administrador d'usuaris** que pugui gestionar altres comptes.
+Avantatges observats:
 
-Començarem entrant a la **màquina client com a administrador**.
+- Configuració clara
+- Millor rendiment en el servidor
 
-Anirem a **Configuració → Característiques opcionals**.
+Dificultats trobades:
 
-![](img/33.png)
+- Menys flexible que Apache
+- Algunes configuracions requereixen més coneixement tècnic
 
-Seleccionarem **Veure característiques**, buscarem **RSAT** i instal·larem les dues opcions que es mostren a la imatge.
+---
 
-![](img/34.png)  
-![](img/35.png)
+## Mètriques observades
 
-Esperarem fins que finalitzi la instal·lació.
+Encara que siguin orientatives, durant les proves es van observar:
 
-![](img/36.png)
+- Temps instal·lació Apache: ~10 minuts
+- Temps instal·lació Nginx: ~8 minuts
+- Consum aproximat de RAM:
+  - Apache: més alt
+  - Nginx: més baix
 
-Des de la màquina client, si iniciem sessió com a **Administrador**, podrem utilitzar les eines de gestió.
+També es va observar que **Nginx responia més ràpid en proves amb múltiples connexions**.
 
-![](img/37.png)
+---
 
-Ara seleccionarem **Agregar otros servidores para administrar**.
+## Decisió final – Servidor web
 
-![](img/38.png)
+La tecnologia escollida és **Nginx**.
 
-Introduirem el **nom del nostre servidor** i l'afegirem.
+### Justificació
 
-![](img/39.png)
+- Millor rendiment
+- Consum menor de recursos
+- Ideal per entorns VPS
+- Millor eficiència energètica
 
-Com podem veure, el servidor s'ha afegit correctament.
+Aquesta decisió respon millor a les necessitats de **rendiment i sostenibilitat del client**.
 
-![](img/40.png)
+---
 
-Ara crearem un nou usuari anomenat **adminOU** dins de la **OU Usuaris**.
+# 4. T11 – Comparativa Moodle vs Canvas
 
-![](img/41.png)
+## Comparativa funcional
 
-Farem clic dret sobre la **OU Usuaris** i seleccionarem **Delegate Control**.
+| Característica | Moodle | Canvas |
+|---|---|---|
+| Cost | Gratuït | Pot tenir cost |
+| Instal·lació | Mitjana | Més complexa |
+| Funcionalitats educatives | Molt completes | Completes |
+| Comunitat | Molt gran | Menor |
+| Escalabilitat | Alta | Alta |
 
-![](img/42.png)
+---
 
-Seleccionarem **Add** i introduirem el nom de l'usuari **adminOU**, que serà a qui delegarem les funcions.
+## Experiència real durant el projecte
 
-![](img/43.png)
+### Moodle
 
-Delegarem les funcions de:
+Aspectes positius:
 
-- Restablir contrasenyes
-- Modificar la pertinença d'usuaris als grups
+- Plataforma molt completa
+- Gran nombre de plugins
+- Comunitat molt activa
 
-![](img/44.png)
+Dificultats trobades:
 
-Iniciem sessió amb **adminOU**.
+- Configuració inicial més llarga
+- Interfície menys moderna
 
-![](img/45.png)
+---
 
-Anirem a **Herramientas → Usuarios y equipos de Active Directory**.
+### Canvas
 
-![](img/46.png)
+Aspectes positius:
 
-Seleccionarem un usuari i **restablirem la seva contrasenya**.
+- Interfície moderna
+- Experiència d'usuari molt bona
 
-![](img/47.png)  
-![](img/48.png)  
-![](img/49.png)
+Dificultats trobades:
 
-També podrem **afegir l'usuari a grups**.
+- Instal·lació més complexa
+- Algunes funcionalitats depenen de serveis externs
 
-![](img/51.png)  
-![](img/52.png)
+---
 
-Si intentem fer una altra acció que **no hem delegat**, com per exemple **eliminar un usuari**, veurem que **no tenim permisos**.
+## Mètriques observades
 
-![](img/53.png)
+Durant les proves es van observar:
+
+- Temps instal·lació Moodle: ~20-30 minuts
+- Creació d'un curs: relativament senzilla
+- Gestió d'usuaris: clara i estructurada
+
+Canvas requeria més configuració inicial.
+
+---
+
+## Decisió final – LMS
+
+La plataforma seleccionada és **Moodle**.
+
+### Justificació
+
+- Programari lliure
+- Gran comunitat
+- Moltes funcionalitats educatives
+- Molt utilitzat en entorns acadèmics
+
+És una solució ideal per una plataforma de formació tècnica com Nexus.
+
+---
+
+# 5. Integració de la solució
+
+La infraestructura final combina les dues decisions principals:
+
+### Servidor web
+Nginx
+
+### Plataforma E-learning
+Moodle
+
+### Sistema operatiu
+Ubuntu Server
+
+### Base de dades
+MariaDB / MySQL
+
+Aquesta combinació permet construir una plataforma **eficient, estable i escalable**.
+
+---
+
+# 6. Viabilitat tècnica i econòmica
+
+Per desplegar la solució es proposa utilitzar un **VPS europeu**.
+
+## Proposta d'infraestructura
+
+Característiques del VPS:
+
+- 2 vCPU
+- 4 GB RAM
+- 80 GB SSD
+- Sistema Linux
+- Ubicació UE
+
+---
+
+## Proveïdors analitzats
+
+- OVHcloud
+- Hetzner
+- IONOS
+- Scaleway
+
+---
+
+## VPS seleccionat
+
+**Hetzner**
+
+### Motius
+
+- Cost reduït
+- Bon rendiment
+- Centres de dades europeus
+
+Cost aproximat:
+
+- 8 €/mes
+- 96 €/any
+
+---
+
+# 7. Estimació de temps i implantació
+
+| Fase | Tasca | Temps |
+|---|---|---|
+| Preparació | Configuració VPS | 2 hores |
+| Sistema | Instal·lació Linux | 1 hora |
+| Servidor web | Instal·lació Nginx | 2 hores |
+| Plataforma | Instal·lació Moodle | 2 hores |
+| Configuració | Usuaris i cursos | 3 hores |
+
+Temps total estimat: **10 hores**
+
+---
+
+# 8. Qualitat, manteniment i sostenibilitat
+
+Per garantir el bon funcionament del sistema es proposen diverses mesures.
+
+### Manteniment
+
+- Actualitzacions del sistema
+- Monitorització del servidor
+- Revisió periòdica del rendiment
+
+### Seguretat
+
+- Configuració de firewall
+- Certificat HTTPS
+- Gestió d'usuaris
+
+### Sostenibilitat
+
+- Servidor eficient (Nginx)
+- Infraestructura VPS
+- Consum reduït de recursos
+
+Aquest enfocament s'alinea amb els principis de **Green IT**.
+
+---
+
+# 9. Conclusions
+
+La solució proposada per al projecte Nexus consisteix en:
+
+- Plataforma LMS: **Moodle**
+- Servidor web: **Nginx**
+- Infraestructura: **VPS europeu (Hetzner)**
+
+Aquesta arquitectura ofereix:
+
+- bon rendiment
+- costos controlats
+- escalabilitat futura
+- consum eficient de recursos
+
+Per aquests motius considerem que aquesta és **la millor opció per al desplegament de la plataforma e-learning de Nexus**.
