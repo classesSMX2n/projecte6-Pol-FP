@@ -1,228 +1,266 @@
-# P02 – Presentació de la proposta al client
-## Projecte Nexus – Plataforma E-learning
+# Projecte Nexus
+## Informe tècnic de la proposta d’infraestructura E-learning
 
 ---
 
-# 1. Presentació de la consultora
+# 1. Context i necessitats del client
 
-Som un equip tècnic especialitzat en **infraestructures de sistemes i serveis web** orientats a projectes educatius i tecnològics.
+L'empresa **Nexus e-learning** és una organització dedicada a la formació tecnològica que vol ampliar la seva oferta educativa mitjançant la creació d'una plataforma de formació online pròpia.
 
-La nostra tasca en aquest projecte ha estat:
+L'objectiu principal del projecte és desplegar una infraestructura tecnològica capaç d'allotjar una plataforma d'aprenentatge virtual orientada a **cursos per a tècnics informàtics**. Aquesta plataforma ha de permetre la publicació de continguts educatius, la gestió d'usuaris i cursos, així com la interacció entre estudiants i professors.
 
-- Analitzar les necessitats de l'empresa Nexus
-- Estudiar diferents tecnologies possibles
-- Desplegar i provar solucions reals
-- Comparar alternatives tècniques
-- Proposar una infraestructura viable i sostenible
+Per aconseguir-ho, Nexus necessita una solució tècnica basada en una infraestructura de servidor estable i eficient, que permeti garantir el correcte funcionament de la plataforma en un entorn real.
 
-El nostre objectiu és oferir una **solució fiable, escalable i econòmica** per a la nova plataforma e-learning de Nexus.
+Aquest projecte simula una situació habitual dins del món professional, en la qual una empresa necessita analitzar diferents tecnologies abans de prendre una decisió sobre quina infraestructura desplegar.
 
----
+## Objectius del projecte
 
-# 2. Context i necessitats del client
+El projecte té diversos objectius principals:
 
-L'empresa **Nexus e-learning** vol crear una plataforma de formació online orientada a **cursos per a tècnics informàtics**.
+- desplegar un servidor capaç d’allotjar una plataforma e-learning funcional
+- analitzar i comparar diferents tecnologies de servidor web
+- estudiar diferents plataformes LMS
+- proposar una solució tècnica viable i sostenible
+- justificar les decisions preses des d’un punt de vista tècnic
 
-Per tal que el projecte sigui viable, la infraestructura ha de complir diversos requisits:
+Aquests objectius permeten construir una proposta completa que respongui a les necessitats del client.
+
+## Necessitats principals del client
+
+Per tal que la plataforma sigui viable, la infraestructura ha de complir diversos requisits tècnics i operatius.
 
 ### Rendiment
-La plataforma ha de suportar diversos usuaris connectats simultàniament sense perdre velocitat.
+
+La plataforma ha de ser capaç de suportar múltiples usuaris connectats simultàniament sense afectar negativament el temps de resposta del sistema. Això és especialment important en plataformes de formació online, on els usuaris poden accedir al mateix temps a continguts, activitats i materials educatius.
 
 ### Cost controlat
-El projecte està pensat per una petita o mitjana organització, per tant cal una solució amb **costos moderats**.
+
+Com que el projecte està pensat per una petita o mitjana organització, és essencial que la solució proposada tingui **costos d'implantació i manteniment moderats**. La infraestructura ha de ser suficientment potent per suportar la plataforma, però sense generar despeses innecessàries.
 
 ### Sostenibilitat
-La infraestructura ha d'utilitzar els recursos de forma eficient per reduir el consum energètic.
+
+Un dels criteris importants del projecte és la sostenibilitat tecnològica. Això implica utilitzar solucions que optimitzin el consum de recursos del servidor i redueixin el consum energètic. La selecció d’eines eficients contribueix a reduir l’impacte ambiental de la infraestructura.
 
 ### Facilitat de manteniment
-El sistema ha de ser fàcil d'administrar i mantenir per l'equip tècnic.
+
+Finalment, el sistema ha de ser fàcil d’administrar i mantenir. Això implica que les tecnologies seleccionades han de tenir bona documentació, una comunitat activa i eines que facilitin la gestió del sistema.
+
+Aquest conjunt de necessitats serà el punt de partida per a les decisions tècniques que es presentaran en els apartats següents de l’informe.
 
 ---
 
-# 3. T04 – Duel de titans: Apache vs Nginx
+# 2. T04 — Duel de titans: Apache vs Nginx
 
-## Comparativa tècnica
+Per seleccionar el servidor web més adequat per al projecte Nexus, s'ha realitzat una comparativa entre **Apache** i **Nginx**, dues de les tecnologies més utilitzades en entorns web.
+
+## 2.1 Comparativa tècnica
 
 | Característica | Apache | Nginx |
 |---|---|---|
 | Instal·lació | Senzilla | Senzilla |
-| Configuració | Flexible | Més tècnica |
+| Configuració | Molt flexible | Més estructurada |
 | Rendiment | Bo | Molt alt |
 | Consum de recursos | Mitjà | Baix |
 | Escalabilitat | Bona | Molt bona |
+| Manteniment | Relativament senzill | Senzill |
+
+Apache és conegut per la seva flexibilitat i gran compatibilitat amb aplicacions web. Nginx, en canvi, destaca per la seva arquitectura orientada a esdeveniments, que permet gestionar moltes connexions amb menys recursos.
 
 ---
 
-## Experiència real durant el projecte
+## 2.2 Experiència real durant el projecte
 
-Durant les proves pràctiques es van observar diversos aspectes:
+Durant el desplegament pràctic del projecte es van utilitzar tots dos servidors per observar-ne el comportament real.
 
-### Apache
+### Experiència amb Apache
 
-Avantatges observats:
+Aspectes positius:
 
-- Configuració molt flexible
-- Gran quantitat de documentació
+- Gran quantitat de documentació disponible
+- Sistema molt flexible de configuració
+- Compatibilitat amb múltiples mòduls
 
 Dificultats trobades:
 
-- Consum de memòria més elevat
-- Configuració més complexa en alguns casos
+- Consum de memòria relativament elevat
+- Algunes configuracions poden resultar complexes en entorns amb múltiples serveis
 
 ---
 
-### Nginx
+### Experiència amb Nginx
 
-Avantatges observats:
+Aspectes positius:
 
-- Configuració clara
-- Millor rendiment en el servidor
+- Configuració clara i ordenada
+- Millor gestió de múltiples connexions simultànies
+- Consum de recursos més reduït
 
 Dificultats trobades:
 
-- Menys flexible que Apache
 - Algunes configuracions requereixen més coneixement tècnic
+- Menys flexibilitat en alguns aspectes comparat amb Apache
+
+Aquesta experiència pràctica ha estat fonamental per entendre el funcionament real de cada servidor.
 
 ---
 
-## Mètriques observades
+## 2.3 Mètriques i dades observades
 
-Encara que siguin orientatives, durant les proves es van observar:
+Durant les proves pràctiques es van obtenir algunes dades orientatives:
 
-- Temps instal·lació Apache: ~10 minuts
-- Temps instal·lació Nginx: ~8 minuts
-- Consum aproximat de RAM:
-  - Apache: més alt
-  - Nginx: més baix
+- Temps aproximat d'instal·lació d’Apache: **10 minuts**
+- Temps aproximat d'instal·lació de Nginx: **8 minuts**
 
-També es va observar que **Nginx responia més ràpid en proves amb múltiples connexions**.
+Consum de recursos aproximat:
 
----
+- **Apache:** consum de RAM més elevat
+- **Nginx:** consum de RAM més reduït
 
-## Decisió final – Servidor web
-
-La tecnologia escollida és **Nginx**.
-
-### Justificació
-
-- Millor rendiment
-- Consum menor de recursos
-- Ideal per entorns VPS
-- Millor eficiència energètica
-
-Aquesta decisió respon millor a les necessitats de **rendiment i sostenibilitat del client**.
+També es va observar que **Nginx responia amb més rapidesa quan hi havia diverses connexions simultànies**.
 
 ---
 
-# 4. T11 – Comparativa Moodle vs Canvas
+## 2.4 Decisió final del servidor web
 
-## Comparativa funcional
+Després d’analitzar les dues tecnologies, la solució escollida és **Nginx**.
+
+### Justificació de la decisió
+
+La decisió es basa en diversos factors:
+
+- millor rendiment general
+- menor consum de recursos
+- millor comportament en entorns VPS
+- major eficiència energètica
+
+Aquests factors encaixen millor amb les necessitats del projecte Nexus, especialment en relació amb la **sostenibilitat i l'eficiència del sistema**.
+
+---
+
+# 3. T11 — Comparativa Moodle vs Canvas LMS
+
+Per seleccionar la plataforma d'aprenentatge virtual (LMS) més adequada, s'ha realitzat una comparativa entre **Moodle** i **Canvas LMS**.
+
+---
+
+## 3.1 Comparativa funcional i tècnica
 
 | Característica | Moodle | Canvas |
 |---|---|---|
 | Cost | Gratuït | Pot tenir cost |
 | Instal·lació | Mitjana | Més complexa |
-| Funcionalitats educatives | Molt completes | Completes |
+| Facilitat d'ús | Bona | Molt bona |
 | Comunitat | Molt gran | Menor |
 | Escalabilitat | Alta | Alta |
+| Funcionalitats educatives | Molt completes | Completes |
+
+Moodle és una de les plataformes LMS més utilitzades a nivell mundial en entorns educatius.
+
+Canvas destaca per la seva interfície moderna i experiència d'usuari millorada.
 
 ---
 
-## Experiència real durant el projecte
+## 3.2 Experiència real durant el projecte
 
-### Moodle
+Durant el projecte també es van analitzar les dues plataformes des d’un punt de vista pràctic.
+
+### Experiència amb Moodle
 
 Aspectes positius:
 
-- Plataforma molt completa
-- Gran nombre de plugins
-- Comunitat molt activa
+- plataforma molt completa
+- gran quantitat de plugins disponibles
+- comunitat molt activa
 
 Dificultats trobades:
 
-- Configuració inicial més llarga
-- Interfície menys moderna
+- instal·lació inicial una mica més llarga
+- interfície menys moderna
 
 ---
 
-### Canvas
+### Experiència amb Canvas
 
 Aspectes positius:
 
-- Interfície moderna
-- Experiència d'usuari molt bona
+- interfície molt moderna
+- experiència d'usuari molt intuïtiva
 
 Dificultats trobades:
 
-- Instal·lació més complexa
-- Algunes funcionalitats depenen de serveis externs
+- procés d’instal·lació més complex
+- dependència d’alguns serveis externs
+
+Aquestes experiències pràctiques han ajudat a valorar la viabilitat real de cada solució.
 
 ---
 
-## Mètriques observades
+## 3.3 Mètriques i criteris observats
 
-Durant les proves es van observar:
+Durant el procés d'anàlisi es van tenir en compte diversos indicadors:
 
-- Temps instal·lació Moodle: ~20-30 minuts
-- Creació d'un curs: relativament senzilla
-- Gestió d'usuaris: clara i estructurada
+- Temps aproximat d'instal·lació de Moodle: **20–30 minuts**
+- Procés de creació de cursos relativament senzill
+- Gestió clara d'usuaris i rols
 
-Canvas requeria més configuració inicial.
+Canvas, en canvi, requeria més configuració inicial per començar a utilitzar el sistema.
 
 ---
 
-## Decisió final – LMS
+## 3.4 Decisió final del LMS
 
-La plataforma seleccionada és **Moodle**.
+La plataforma seleccionada per al projecte és **Moodle**.
 
 ### Justificació
 
-- Programari lliure
-- Gran comunitat
-- Moltes funcionalitats educatives
-- Molt utilitzat en entorns acadèmics
+Els principals motius de la decisió són:
 
-És una solució ideal per una plataforma de formació tècnica com Nexus.
+- és programari lliure
+- té una gran comunitat internacional
+- ofereix moltes funcionalitats educatives
+- és àmpliament utilitzat en universitats i centres de formació
 
----
-
-# 5. Integració de la solució
-
-La infraestructura final combina les dues decisions principals:
-
-### Servidor web
-Nginx
-
-### Plataforma E-learning
-Moodle
-
-### Sistema operatiu
-Ubuntu Server
-
-### Base de dades
-MariaDB / MySQL
-
-Aquesta combinació permet construir una plataforma **eficient, estable i escalable**.
+Aquestes característiques fan que Moodle sigui una opció molt adequada per a la plataforma e-learning de Nexus.
 
 ---
 
-# 6. Viabilitat tècnica i econòmica
+# 4. Integració de la solució
 
-Per desplegar la solució es proposa utilitzar un **VPS europeu**.
+La solució final integra les decisions tècniques preses durant el projecte.
 
-## Proposta d'infraestructura
+## Arquitectura del sistema
 
-Característiques del VPS:
+La infraestructura proposada està formada per:
+
+- **Sistema operatiu:** Ubuntu Server
+- **Servidor web:** Nginx
+- **LMS:** Moodle
+- **Base de dades:** MariaDB o MySQL
+- **Infraestructura:** VPS
+
+Aquesta combinació permet construir una plataforma estable, escalable i eficient.
+
+---
+
+# 5. Viabilitat tècnica i econòmica
+
+Per desplegar la infraestructura es proposa utilitzar un **servidor VPS europeu**, que permet reduir costos mantenint un bon nivell de rendiment.
+
+## Proposta d’infraestructura
+
+Característiques aproximades del VPS:
 
 - 2 vCPU
 - 4 GB RAM
 - 80 GB SSD
-- Sistema Linux
-- Ubicació UE
+- sistema operatiu Linux
+- centre de dades europeu
 
 ---
 
 ## Proveïdors analitzats
+
+Durant l'estudi es van considerar diversos proveïdors:
 
 - OVHcloud
 - Hetzner
@@ -233,74 +271,66 @@ Característiques del VPS:
 
 ## VPS seleccionat
 
-**Hetzner**
+El proveïdor seleccionat és **Hetzner**.
 
-### Motius
+### Motiu de la selecció
 
-- Cost reduït
-- Bon rendiment
-- Centres de dades europeus
+- preu competitiu
+- bon rendiment dels servidors
+- centres de dades situats a Europa
 
 Cost aproximat:
 
-- 8 €/mes
-- 96 €/any
+- **8 € al mes**
+- **96 € a l'any**
+
+Aquest cost permet mantenir el projecte dins d’un pressupost raonable.
 
 ---
 
-# 7. Estimació de temps i implantació
+# 6. Qualitat, manteniment i sostenibilitat
 
-| Fase | Tasca | Temps |
-|---|---|---|
-| Preparació | Configuració VPS | 2 hores |
-| Sistema | Instal·lació Linux | 1 hora |
-| Servidor web | Instal·lació Nginx | 2 hores |
-| Plataforma | Instal·lació Moodle | 2 hores |
-| Configuració | Usuaris i cursos | 3 hores |
+Per garantir el correcte funcionament del sistema és necessari aplicar bones pràctiques de manteniment i seguretat.
 
-Temps total estimat: **10 hores**
+## Manteniment del sistema
 
----
+- actualització periòdica del sistema operatiu
+- actualització de Moodle
+- monitorització del rendiment del servidor
 
-# 8. Qualitat, manteniment i sostenibilitat
+## Seguretat
 
-Per garantir el bon funcionament del sistema es proposen diverses mesures.
+- configuració de firewall
+- ús de certificats HTTPS
+- gestió adequada d’usuaris i permisos
 
-### Manteniment
+## Sostenibilitat tecnològica
 
-- Actualitzacions del sistema
-- Monitorització del servidor
-- Revisió periòdica del rendiment
+La solució adoptada contribueix a la sostenibilitat mitjançant:
 
-### Seguretat
+- ús d’un servidor web eficient (Nginx)
+- infraestructura VPS amb consum reduït
+- optimització dels recursos del sistema
 
-- Configuració de firewall
-- Certificat HTTPS
-- Gestió d'usuaris
-
-### Sostenibilitat
-
-- Servidor eficient (Nginx)
-- Infraestructura VPS
-- Consum reduït de recursos
-
-Aquest enfocament s'alinea amb els principis de **Green IT**.
+Aquest enfocament segueix els principis de **Green IT**.
 
 ---
 
-# 9. Conclusions
+# 7. Conclusions i proposta final
 
-La solució proposada per al projecte Nexus consisteix en:
+Després de l'anàlisi tècnica realitzada, la proposta final per al projecte Nexus és la següent:
 
-- Plataforma LMS: **Moodle**
-- Servidor web: **Nginx**
-- Infraestructura: **VPS europeu (Hetzner)**
+- **Servidor web:** Nginx
+- **Plataforma LMS:** Moodle
+- **Sistema operatiu:** Ubuntu Server
+- **Infraestructura:** VPS europeu (Hetzner)
 
-Aquesta arquitectura ofereix:
+Aquesta arquitectura ofereix diversos avantatges:
 
-- bon rendiment
-- costos controlats
-- escalabilitat futura
-- consum eficient de recursos
+- bon rendiment del sistema
+- costos d'infraestructura reduïts
+- facilitat de manteniment
+- possibilitat d'escalabilitat futura
+- ús eficient dels recursos del servidor
 
-Per aquests motius considerem que aquesta és **la millor opció per al desplegament de la plataforma e-learning de Nexus**.
+Per aquests motius, aquesta solució es considera **la millor opció per desplegar la plataforma e-learning de Nexus de forma estable, eficient i sostenible**.
