@@ -6,9 +6,9 @@
 
 ## Autor
 
-Nom: [Escriu el teu nom aquí]
+Nom: Pol
 
-Formant grups de treball: [Escriu els noms dels membres del grup aquí]
+Formant grups de treball: Pol C. i Marc M.
 
 ## Descripció del projecte
 
