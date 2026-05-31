@@ -24,6 +24,7 @@ Formant grups de treball: Pol C. i Marc M.
 - [**Tasca 10 (T10)**](./T10)
 - [**Tasca 11 (T11)**](./T11)
 - [**Tasca 12 (T12)**](./T12)
+- [**Tasca 13 (T13)**](./T13)
 - [**Producte 1 (P01)**](./P01)
 - [**Producte 2 (P02)**](./P02)
 - [**Producte 3 (P03)**](./P03)
