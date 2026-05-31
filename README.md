@@ -12,21 +12,21 @@ Formant grups de treball: Pol C. i Marc M.
 
 ## Contingut del projecte
 
-- [**Tasca 1 (T01)**](./T01/README.md)
-- [**Tasca 2 (T02)**](./T02/README.md)
-- [**Tasca 3 (T03)**](./T03/README.md)
-- [**Tasca 4 (T04)**](./T04/README.md)
-- [**Tasca 5 (T05)**](./T05/README.md)
-- [**Tasca 6 (T06)**](./T06/README.md)
-- [**Tasca 7 (T07)**](./T07/README.md)
-- [**Tasca 8 (T08)**](./T08/README.md)
-- [**Tasca 9 (T09)**](./T09/README.md)
-- [**Tasca 10 (T10)**](./T10/README.md)
-- [**Producte 1 (P01)**](./P01/README.md)
-- [**Producte 2 (P02)**](./P02/README.md)
-- [**Producte 3 (P03)**](./P03/README.md)
-- [**Producte 4 (P04)**](./P04/README.md)
-- [**Producte 6 (P06)**](./P06/README.md)
+- [**Tasca 1 (T01)**](./T01)
+- [**Tasca 2 (T02)**](./T02)
+- [**Tasca 3 (T03)**](./T03)
+- [**Tasca 4 (T04)**](./T04)
+- [**Tasca 5 (T05)**](./T05)
+- [**Tasca 6 (T06)**](./T06)
+- [**Tasca 7 (T07)**](./T07)
+- [**Tasca 8 (T08)**](./T08)
+- [**Tasca 9 (T09)**](./T09)
+- [**Tasca 10 (T10)**](./T10)
+- [**Producte 1 (P01)**](./P01)
+- [**Producte 2 (P02)**](./P02)
+- [**Producte 3 (P03)**](./P03)
+- [**Producte 4 (P04)**](./P04)
+- [**Producte 6 (P06)**](./P06)
 
 ## Descripció del projecte
 
